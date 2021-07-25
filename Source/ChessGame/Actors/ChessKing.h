@@ -13,5 +13,9 @@ UCLASS()
 class CHESSGAME_API AChessKing : public AChessPieceBase
 {
 	GENERATED_BODY()
-	
+
+protected:
+	void SelectedChessPiece(UPrimitiveComponent* touchedComponent, FKey buttonPressed) override;
+
+	void CheckMovement(TArray<FIntPoint>& ValidMoves) override;
 };

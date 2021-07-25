@@ -8,17 +8,8 @@
 
 void AChessKnight::SelectedChessPiece(UPrimitiveComponent* touchedComponent, FKey buttonPressed)
 {
-    Super::SelectedChessPiece(touchedComponent, buttonPressed);
-
-    if (GameModeRef->IsWhiteTurn() && ChessPieceTeam == 1)
+    if (!IsMyTeamsTurn())
     {
-        UE_LOG(LogTemp, Warning, TEXT("Can't select black pieces on first player turn"));
-        return;
-    }
-
-    if (!GameModeRef->IsWhiteTurn() && ChessPieceTeam == 0)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("Can't select white pieces on second player turn"));
         return;
     }
 

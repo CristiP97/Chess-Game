@@ -21,6 +21,6 @@ private:
 protected:
 	void SelectedChessPiece(UPrimitiveComponent* touchedComponent, FKey buttonPressed) override;
 
-	void CheckMovement(TArray<FIntPoint>& ValidMoves);
+	void CheckMovement(TArray<FIntPoint>& ValidMoves) override;
 	
 };

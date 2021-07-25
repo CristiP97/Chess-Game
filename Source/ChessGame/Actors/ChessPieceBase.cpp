@@ -220,3 +220,25 @@ void AChessPieceBase::CheckSingleMovement(TArray<FIntPoint>& ValidMoves, FIntPoi
         }
     }
 }
+
+bool AChessPieceBase::IsMyTeamsTurn()
+{
+	if (GameModeRef->IsWhiteTurn() && ChessPieceTeam == 1)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Can't select black pieces on first player turn"));
+        return false;
+    }
+
+    if (!GameModeRef->IsWhiteTurn() && ChessPieceTeam == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Can't select white pieces on second player turn"));
+        return false;
+    }
+
+	return true;
+}
+
+void AChessPieceBase::CheckMovement(TArray<FIntPoint>& ValidMoves)
+{
+	
+}

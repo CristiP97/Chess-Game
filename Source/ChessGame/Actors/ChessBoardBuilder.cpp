@@ -144,10 +144,20 @@ void AChessBoardBuilder::SpawnChessPiece(AChessBoardPiece* CurrentChessBoardPiec
 			CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::Knight);
 			return;
 		}
+
+		if (XCoord == 3)
+		{
+			CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::Queen);
+			return;
+		}
+
+		if (XCoord == 4)
+		{
+			CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::King);
+			return;
+		}
 		
 		CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::Pawn);
-		// TODO: Additional chess piece spawning depending on the XPosition on the table
-		// TODO: EX. Rook, Queen, Knight etc.
 		return;
 	}
 

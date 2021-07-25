@@ -56,6 +56,8 @@ protected:
 	void RotateWinnerPiece(float DeltaTime);
 	virtual void CheckRepeatedMovement(TArray<FIntPoint>& ValidMoves, FIntPoint CandidatePoint, FIntPoint Directions);
 	virtual void CheckSingleMovement(TArray<FIntPoint>& ValidMoves, FIntPoint CandidatePoint, FIntPoint Directions);
+	virtual void CheckMovement(TArray<FIntPoint>& ValidMoves);
+	bool IsMyTeamsTurn();
 
 	UPROPERTY(EditAnyWhere, Category = "SpawnInfo")
 	float InitialPlacementZOffset = 50.f;
