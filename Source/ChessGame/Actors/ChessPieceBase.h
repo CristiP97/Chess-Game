@@ -10,6 +10,7 @@ class UStaticMeshComponent;
 class AChessGameGameModeBase;
 class AChessBoardBuilder;
 class AChessBoardPiece;
+struct FIntPoint;
 
 UCLASS()
 class CHESSGAME_API AChessPieceBase : public AActor
@@ -77,6 +78,11 @@ protected:
 
 	UPROPERTY(EditAnyWhere, Category = "Movement")
 	float ChessRotateSpeed = 45.f;
+
+	// The direction where the chess piece can move on the table
+	// Offset of the move
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+	TArray<FIntPoint> AllDirections;
 
 	bool bIsMoving = false;
 	bool bTargetReached = true;

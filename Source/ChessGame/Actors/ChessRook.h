@@ -6,6 +6,7 @@
 #include "ChessGame/Actors/ChessPieceBase.h"
 #include "ChessRook.generated.h"
 
+struct FIntPoint;
 /**
  * 
  */
@@ -13,5 +14,13 @@ UCLASS()
 class CHESSGAME_API AChessRook : public AChessPieceBase
 {
 	GENERATED_BODY()
+
+private:
+	void CheckPerpendicularDirections(TArray<FIntPoint>& ValidMoves, FIntPoint CandidatePoint, FIntPoint Directions);
+
+protected:
+	void SelectedChessPiece(UPrimitiveComponent* touchedComponent, FKey buttonPressed) override;
+
+	void CheckMovement(TArray<FIntPoint>& ValidMoves);
 	
 };

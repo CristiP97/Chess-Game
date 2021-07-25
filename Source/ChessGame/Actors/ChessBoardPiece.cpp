@@ -87,13 +87,13 @@ int AChessBoardPiece::GetChessPieceIndex(ChessPieceTypes NameOfChessPiece) const
 			return 0;
 		case ChessPieceTypes::Bishop:
 			return 1;
-		case ChessPieceTypes::King:
+		case ChessPieceTypes::Rook:
 			return 2;
 		case ChessPieceTypes::Knight:
 			return 3;
 		case ChessPieceTypes::Queen:
 			return 4;
-		case ChessPieceTypes::Rook:
+		case ChessPieceTypes::King:
 			return 5;
 		default:
 			return 0;

@@ -31,20 +31,11 @@ void AChessBishop::SelectedChessPiece(UPrimitiveComponent* touchedComponent, FKe
 void AChessBishop::CheckMovement(TArray<FIntPoint>& ValidMoves)
 {
     FIntPoint CandidatePoint {XCoord, YCoord};
-    FIntPoint Directions {1, 1};
-    CheckDiagonal(ValidMoves, CandidatePoint, Directions);
 
-    Directions.X = 1;
-    Directions.Y = -1;
-    CheckDiagonal(ValidMoves, CandidatePoint, Directions);
-
-    Directions.X = -1;
-    Directions.Y = 1;
-    CheckDiagonal(ValidMoves, CandidatePoint, Directions);
-
-    Directions.X = -1;
-    Directions.Y = -1;
-    CheckDiagonal(ValidMoves, CandidatePoint, Directions);
+    for (int32 Index = 0; Index < AllDirections.Num(); ++Index)
+    {
+        CheckDiagonal(ValidMoves, CandidatePoint, AllDirections[Index]);
+    }
 }
 
 void AChessBishop::CheckDiagonal(TArray<FIntPoint>& ValidMoves, FIntPoint CandidatePoint, FIntPoint Directions)

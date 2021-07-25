@@ -132,6 +132,12 @@ void AChessBoardBuilder::SpawnChessPiece(AChessBoardPiece* CurrentChessBoardPiec
 			CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::Bishop);
 			return;
 		}
+
+		if (XCoord == 0 || XCoord == Width - 1)
+		{
+			CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::Rook);
+			return;
+		}
 		
 		CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::Pawn);
 		// TODO: Additional chess piece spawning depending on the XPosition on the table

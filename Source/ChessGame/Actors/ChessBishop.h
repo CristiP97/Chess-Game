@@ -20,7 +20,7 @@ private:
 	void CheckDiagonal(TArray<FIntPoint>& ValidMoves, FIntPoint CandidatePoint, FIntPoint Directions);
 
 protected:
-	virtual void SelectedChessPiece(UPrimitiveComponent* touchedComponent, FKey buttonPressed);
+	void SelectedChessPiece(UPrimitiveComponent* touchedComponent, FKey buttonPressed) override;
 
 	void CheckMovement(TArray<FIntPoint>& ValidMoves);
 	
