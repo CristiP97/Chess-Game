@@ -165,3 +165,58 @@ void AChessPieceBase::RotateWinnerPiece(float DeltaTime)
 		}
 	}
 }
+
+void AChessPieceBase::CheckRepeatedMovement(TArray<FIntPoint>& ValidMoves, FIntPoint CandidatePoint, FIntPoint Directions)
+{
+	AChessBoardPiece* CandidateChessBoardPiece;
+    
+    do
+    {
+        CandidatePoint.X += Directions.X;
+        CandidatePoint.Y += Directions.Y;
+
+        CandidateChessBoardPiece = ChessBoardBuilderRef->GetChessBoardPieceAtCoords(CandidatePoint);
+
+        if (CandidateChessBoardPiece)
+        {
+            AChessPieceBase* ChessPiece = CandidateChessBoardPiece->GetActiveChessPiece();
+
+            if (!ChessPiece || (ChessPiece->GetTeam() != ChessPieceTeam))
+            {
+                ValidMoves.Emplace(CandidatePoint);
+                ValidChessBoardPieces.Emplace(CandidateChessBoardPiece);
+                CandidateChessBoardPiece->ShowAvailableSelection();
+                CandidateChessBoardPiece->SetValidMoveSelection(true);
+            }
+            
+            if (ChessPiece)
+            {
+                break;
+            }
+        }
+    } 
+    while (CandidateChessBoardPiece);
+}
+
+void AChessPieceBase::CheckSingleMovement(TArray<FIntPoint>& ValidMoves, FIntPoint CandidatePoint, FIntPoint Directions)
+{
+	AChessBoardPiece* CandidateChessBoardPiece;
+    
+    CandidatePoint.X += Directions.X;
+    CandidatePoint.Y += Directions.Y;
+
+    CandidateChessBoardPiece = ChessBoardBuilderRef->GetChessBoardPieceAtCoords(CandidatePoint);
+
+    if (CandidateChessBoardPiece)
+    {
+        AChessPieceBase* ChessPiece = CandidateChessBoardPiece->GetActiveChessPiece();
+
+        if (!ChessPiece || (ChessPiece->GetTeam() != ChessPieceTeam))
+        {
+            ValidMoves.Emplace(CandidatePoint);
+            ValidChessBoardPieces.Emplace(CandidateChessBoardPiece);
+            CandidateChessBoardPiece->ShowAvailableSelection();
+            CandidateChessBoardPiece->SetValidMoveSelection(true);
+        }
+    }
+}

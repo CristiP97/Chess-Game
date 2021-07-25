@@ -13,5 +13,13 @@ UCLASS()
 class CHESSGAME_API AChessKnight : public AChessPieceBase
 {
 	GENERATED_BODY()
-	
+
+private:
+	void CheckKnightDirections(TArray<FIntPoint>& ValidMoves, FIntPoint CandidatePoint, FIntPoint Directions);
+
+protected:
+	void SelectedChessPiece(UPrimitiveComponent* touchedComponent, FKey buttonPressed) override;
+
+	void CheckMovement(TArray<FIntPoint>& ValidMoves);
+
 };

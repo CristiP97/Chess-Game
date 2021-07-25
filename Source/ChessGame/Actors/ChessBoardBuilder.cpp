@@ -127,7 +127,7 @@ void AChessBoardBuilder::SpawnChessPiece(AChessBoardPiece* CurrentChessBoardPiec
 	// Decide what type of chess piece to spawn depending on the position
 	if (YCoord == 0 || YCoord == Length - 1)
 	{
-		if (XCoord == 1 || XCoord == Width - 2)
+		if (XCoord == 2 || XCoord == Width - 3)
 		{
 			CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::Bishop);
 			return;
@@ -136,6 +136,12 @@ void AChessBoardBuilder::SpawnChessPiece(AChessBoardPiece* CurrentChessBoardPiec
 		if (XCoord == 0 || XCoord == Width - 1)
 		{
 			CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::Rook);
+			return;
+		}
+
+		if (XCoord == 1 || XCoord == Width - 2)
+		{
+			CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::Knight);
 			return;
 		}
 		
