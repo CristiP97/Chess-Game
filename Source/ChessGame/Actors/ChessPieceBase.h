@@ -41,6 +41,7 @@ public:
 	void ClearAvailableSelection();
 	void SetChessPieceMaterial(UMaterialInstance* Material);
 	void StartMovement(FVector TargetLocation);
+	void SetWinnerChessPiece();
 
 
 protected:
@@ -51,7 +52,7 @@ protected:
 	virtual void SelectedChessPiece(UPrimitiveComponent* touchedComponent, FKey buttonPressed);
 
 	virtual void Move(float DeltaTime);
-
+	void RotateWinnerPiece(float DeltaTime);
 
 	UPROPERTY(EditAnyWhere, Category = "SpawnInfo")
 	float InitialPlacementZOffset = 50.f;
@@ -65,17 +66,24 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Chess Piece Info")
 	int32 ChessPieceTeam = -1;
 	
-	UPROPERTY(VisibleAnyWhere, Category = "Chess Board Position")
+	UPROPERTY(VisibleAnywhere, Category = "Chess Board Position")
 	int32 XCoord = 0;
 	
-	UPROPERTY(VisibleAnyWhere, Category = "Chess Board Position")
+	UPROPERTY(VisibleAnywhere, Category = "Chess Board Position")
 	int32 YCoord = 0;
 
-	UPROPERTY(EditAnyWhere, Category = "Move Speed")
+	UPROPERTY(EditAnyWhere, Category = "Movement")
 	float ChessPieceMoveSpeed = 5.f;
+
+	UPROPERTY(EditAnyWhere, Category = "Movement")
+	float ChessRotateSpeed = 45.f;
 
 	bool bIsMoving = false;
 	bool bTargetReached = true;
+	bool bWinnerPosition = false;
+
+	UPROPERTY(VisibleAnywhere, Category = "Winning piece")
+	bool bWinnerChessPiece = false;
 	FVector NewTargetLocation;
 
     TArray<AChessBoardPiece*> ValidChessBoardPieces;

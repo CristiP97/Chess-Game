@@ -42,6 +42,11 @@ void AChessPieceBase::Tick(float DeltaTime)
 	{
 		Move(DeltaTime);
 	}
+
+	if (bWinnerChessPiece)
+	{
+		RotateWinnerPiece(DeltaTime);
+	}
 }
 
 void AChessPieceBase::SetTeam(int32 Team)
@@ -128,12 +133,35 @@ void AChessPieceBase::StartMovement(FVector TargetLocation)
 void AChessPieceBase::Move(float DeltaTime)
 {
 	FVector Location = GetActorLocation();
-	Location = FMath::Lerp(Location, NewTargetLocation, ChessPieceMoveSpeed *DeltaTime);
+	Location = FMath::Lerp(Location, NewTargetLocation, ChessPieceMoveSpeed * DeltaTime);
 	SetActorLocation(Location);
 
-	if (FVector::Distance(Location, NewTargetLocation) < 0.01f)
+	if (FVector::Distance(Location, NewTargetLocation) < 0.1f)
 	{
 		bTargetReached = true;
 		bIsMoving = false;
+	}
+}
+
+void AChessPieceBase::SetWinnerChessPiece()
+{
+	bWinnerChessPiece = true;
+}
+
+void AChessPieceBase::RotateWinnerPiece(float DeltaTime)
+{
+	FRotator CurrentRotation = GetActorRotation();
+	CurrentRotation.Add(0.f, DeltaTime * ChessRotateSpeed, 0.f);
+	SetActorRotation(CurrentRotation);
+
+	if (!bWinnerPosition)
+	{
+		if (!bIsMoving)
+		{
+			bWinnerPosition = true;
+			FVector TargetLocation = GetActorLocation();
+			TargetLocation.Z += InitialPlacementZOffset;
+			StartMovement(TargetLocation);
+		}
 	}
 }

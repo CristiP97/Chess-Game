@@ -189,11 +189,13 @@ void AChessBoardPiece::CheckGameEnded() const
 	if (ActiveChessPiece->GetTeam() == 0 && YCoord == Length - 1)
 	{
 		GameModeRef->PlayerWon(ActiveChessPiece->GetTeam());
+		ActiveChessPiece->SetWinnerChessPiece();
 	}
 
 	if (ActiveChessPiece->GetTeam() == 1 && YCoord == 0)
 	{
 		GameModeRef->PlayerWon(ActiveChessPiece->GetTeam());
+		ActiveChessPiece->SetWinnerChessPiece();
 	}
 }
 
