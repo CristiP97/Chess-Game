@@ -6,6 +6,8 @@
 #include "ChessGame/Actors/ChessPieceBase.h"
 #include "ChessBishop.generated.h"
 
+struct FIntPoint;
+
 /**
  * 
  */
@@ -13,5 +15,13 @@ UCLASS()
 class CHESSGAME_API AChessBishop : public AChessPieceBase
 {
 	GENERATED_BODY()
+
+private:
+	void CheckDiagonal(TArray<FIntPoint>& ValidMoves, FIntPoint CandidatePoint, FIntPoint Directions);
+
+protected:
+	virtual void SelectedChessPiece(UPrimitiveComponent* touchedComponent, FKey buttonPressed);
+
+	void CheckMovement(TArray<FIntPoint>& ValidMoves);
 	
 };

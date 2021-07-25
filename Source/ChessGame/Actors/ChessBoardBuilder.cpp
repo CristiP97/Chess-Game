@@ -127,6 +127,12 @@ void AChessBoardBuilder::SpawnChessPiece(AChessBoardPiece* CurrentChessBoardPiec
 	// Decide what type of chess piece to spawn depending on the position
 	if (YCoord == 0 || YCoord == Length - 1)
 	{
+		if (XCoord == 1 || XCoord == Width - 2)
+		{
+			CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::Bishop);
+			return;
+		}
+		
 		CurrentChessBoardPiece->SpawnChessPiece(ChessPieceTypes::Pawn);
 		// TODO: Additional chess piece spawning depending on the XPosition on the table
 		// TODO: EX. Rook, Queen, Knight etc.
